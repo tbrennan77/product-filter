@@ -1,0 +1,124 @@
+@import url('font-awesome-ie7.css');
+.tab { 
+	zoom:1; 
+	*display:inline; 
+}
+#logo-container {
+	text-align: left !important;
+}
+.sub-menu {
+	border-left:#EEEEEE solid 1px;
+	border-right:#EEEEEE solid 1px;
+	border-bottom:#EEEEEE solid 1px;
+}
+#top-links-container li a {
+	height:30px;
+	width:32px;
+	behavior: url(/wp-content/themes/viewportindustries-Starkers-689d7e6/_js/PIE.htc);
+}
+#top-links-container li a i {
+	right:3px !important;
+	top:2px !important;
+}
+#nav-container ul li ul {top:36px;}
+.content-image-header {
+	behavior: url(/wp-content/themes/viewportindustries-Starkers-689d7e6/_js/PIE.htc);
+ }
+#pager a {
+	background:url(../_img/inactive-dot.png) no-repeat;
+}
+#pager a:hover {
+	background:url(../_img/active-dot.png) no-repeat;
+	border:0;
+	height:10px;
+	padding:6px;
+	width:10px;
+
+}
+#pager a.activeSlide { 
+	background:url(../_img/active-dot.png) no-repeat;
+  	border:0;
+  	height:10px;
+	padding:6px;
+	width:10px;
+}
+#hero-gallery div img {
+	position: absolute;
+	z-index: 1;
+}
+.gallery-text {
+	margin: 0 auto;
+	min-width:800px;
+	max-width:1600px;
+ 	padding:2% 2% 0 2%;
+	position:relative;
+	z-index: 400;
+}
+.product-filter-table td {
+	padding-left:7px;
+	padding-right:7px;
+}
+.camera_bar {
+	display:none;
+}
+.camera_prev, .camera_next {
+	background:transparent;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#7FFFFFFF,endColorstr=#7FFFFFFF); 
+	zoom: 1;
+}
+.camera_prev.hover, .camera_next.hover {
+	background:transparent;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#D9FFFFFF,endColorstr=#D9FFFFFF); 
+	zoom: 1;
+	color:#0b79bf;
+}
+.camera_prev.hover i, .camera_next.hover i {
+	color:#0b79bf;
+}
+.gallery-text .span_6 {
+	background:transparent;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#D9FFFFFF,endColorstr=#D9FFFFFF);
+	zoom: 1;
+	position:relative;
+}
+.gallery-button,.gallery-button:visited {
+	background:transparent;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#D9FFFFFF,endColorstr=#D9FFFFFF);
+	zoom: 1;
+}
+.circle-image {position:relative;}
+.callout-content {
+   	display:none;
+}
+.callout-content.hover {
+	display:block;
+}
+#nav-container ul li ul {
+	border:1px solid #EEE;
+	border-top:none;
+	-moz-box-shadow: none !important;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+}
+.top-link {/*behavior: url(/wp-content/themes/viewportindustries-Starkers-689d7e6/_js/PIE.htc);*/}
+.gallery-button {behavior: url(/wp-content/themes/viewportindustries-Starkers-689d7e6/_js/PIE.htc);}
+.circle-image {behavior: url(/wp-content/themes/viewportindustries-Starkers-689d7e6/_js/PIE.htc);}
+/* .tab {behavior: url(/wp-content/themes/viewportindustries-Starkers-689d7e6/_js/PIE.htc);} */
+span.callout-header-icon  {behavior: url(/wp-content/themes/viewportindustries-Starkers-689d7e6/_js/PIE.htc);}
+.callout-content {behavior: url(/wp-content/themes/viewportindustries-Starkers-689d7e6/_js/PIE.htc);}
+.span_quarter.hover {behavior: url(/wp-content/themes/viewportindustries-Starkers-689d7e6/_js/PIE.htc);}
+.button-link.blue {
+	background:#0b79bf !important;
+	behavior:url(/wp-content/themes/viewportindustries-Starkers-689d7e6/_js/PIE.htc);
+}
+.button-link {
+	behavior:url(/wp-content/themes/viewportindustries-Starkers-689d7e6/_js/PIE.htc);
+}
+
+/*
+.tabs-content {
+	behavior: url(/wp-content/themes/viewportindustries-Starkers-689d7e6/_js/PIE.htc);
+}
+*/
+.button {behavior: url(/wp-content/themes/viewportindustries-Starkers-689d7e6/_js/PIE.htc);}
+.button.hover {behavior: url(/wp-content/themes/viewportindustries-Starkers-689d7e6/_js/PIE.htc);}
