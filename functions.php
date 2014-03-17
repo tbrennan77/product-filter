@@ -662,26 +662,47 @@ add_filter('tiny_mce_before_init', 'custom_wysiwyg');
 */
 
 /*=========================PACKAGING GLOSSARY=========================*/
+function find_category_options() {
+  $category_name      = 'filter_2';
+  $selected_category  = $_GET[$category_name];
+	$categories 			  = mysql_query("SELECT distinct(filter_2) FROM packaging_glossary");
+  $category_options[] = "<option value=''>Filter by Category</option>";
+  
+	while($category = mysql_fetch_array($categories)){
+		$selected = "";
+		if ($selected_category == $category[$category_name]) {
+			$selected = "selected";
+		}
+		$category_options[] = "<option value='" . $category[$category_name] . "'$selected>" . $category[$category_name] ."</option>";
+	}
+	return implode("\n", $category_options);
+}
+
+function find_alpha_options() {
+  $alpha_name      = 'filter_1';  
+  $selected_alpha  = $_GET[$alpha_name];  
+	$alpha_nums 		 = mysql_query("SELECT distinct(filter_1) FROM packaging_glossary");
+  $alpha_options[] = "<option value=''>Filter by Alphabet</option>";
+	while($alpha = mysql_fetch_array($alpha_nums)){
+		$selected = "";
+		if ($selected_alpha == $alpha[$alpha_name]) { 
+			$selected = "selected";
+		}     
+		$alpha_options[] = "<option value='" . $alpha[$alpha_name] . "'$selected>" . $alpha[$alpha_name] ."</option>";
+	}
+	return implode("\n", $alpha_options);
+}
+
 function glossary_filter() {
-	$query1=mysql_query("SELECT distinct(filter_1) FROM packaging_glossary");
-		echo "<div id='packaging-glossary'>";
-		echo "<select id='filter_1'>";	
-		echo "<option>Filter by Alphabet</option>";	
-	while($row1 = mysql_fetch_array($query1)){ 
-   	 $glossary_alpha_num_filter .= "<option value=" . $row1['filter_1'] . ">" . $row1['filter_1'] ."</option>";
-    }
-    echo $glossary_alpha_num_filter;
-    echo "</select>";
-    
-    $query2=mysql_query("SELECT distinct(filter_2) FROM packaging_glossary");
-		echo "<select id='filter_2'>";
-		echo "<option>Filter by Category</option>";	
-	while($row2 = mysql_fetch_array($query2)){ 
-   	 $glossary_cat_filter .= "<option value=" . $row2['filter_2'] . ">" . $row2['filter_2'] ."</option>";
-    }
-    echo $glossary_cat_filter;
-    echo "</select>";
-    echo "<span class='reset-glossary'>Reset</span>";
+	$alpha_options    = find_alpha_options();
+	$category_options = find_category_options();
+
+	echo "<div id='packaging-glossary'>";
+	
+	echo "<select id='filter_1'>$alpha_options</select>";
+  echo "<select id='filter_2'>$category_options</select>";
+	  
+  echo "<span class='reset-glossary'>Reset</span>";
 }
 
 function get_glossary() {
@@ -692,7 +713,8 @@ function get_glossary() {
 	
 	if ( !($filter_1 == NULL) && !($filter_2 == NULL) ) { //if both filters are used
 	
-		$query=mysql_query("SELECT * FROM packaging_glossary WHERE filter_1 = '" . $filter_1 . "' AND (filter_2='" . $filter_2 . "' OR filter_3 = '" . $filter_2 . "' OR filter_4 = '" . $filter_2 . "' OR filter_5 = '" . $filter_2 . "' OR filter_6 = '" . $filter_2 . "' OR filter_7 = '" . $filter_2 . "')");
+		$query=mysql_query("SELECT * FROM packaging_glossary WHERE filter_1 = '" . $filter_1 . "' AND (filter_2='" . $filter_2 . "' OR filter_3 = '" . 
+$filter_2 . "' OR filter_4 = '" . $filter_2 . "' OR filter_5 = '" . $filter_2 . "' OR filter_6 = '" . $filter_2 . "' OR filter_7 = '" . $filter_2 . "')");
 		
 	} elseif ( !($filter_1 == NULL) && ($filter_2 == NULL) ) { //if only the alhpa/num filter is used
 	
