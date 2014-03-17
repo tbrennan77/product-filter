@@ -1,4 +1,13 @@
 <?php
+
+require_once 'php-activerecord/ActiveRecord.php';
+ 
+ ActiveRecord\Config::initialize(function($cfg)
+ {
+   $cfg->set_model_directory('models');
+   $cfg->set_connections(array('production' =>
+     'mysql://pipelio9_dbadmin:P1p3l1n3!@localhost/pipelio9_wpcms'));
+ });
 /**
  * TwentyTen functions and definitions
  *
