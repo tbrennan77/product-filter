@@ -10,7 +10,7 @@ jQuery(document).ready(function() {
         jQuery("#ajax_working").delay(300).fadeOut();
       },
       success: function(data, textStatus, XMLHttpRequest){
-        jQuery("#pTable").html('');               
+        jQuery("#pTable").html('');        
         jQuery("#pTable").append(data.slice(0, -1));
       },
       error: function(XMLHttpRequest, textStatus, errorThrown){
