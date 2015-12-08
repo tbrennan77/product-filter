@@ -530,6 +530,14 @@ header .full-width {
 	-ms-border-radius: 6px 20px 20px 6px;
 	width:150px;
 }  
+#top-links-container li a.top-link.social-icon:hover, #top-links-container li .top-link.social-icon.hover {
+	width:100px;
+ 	-moz-border-radius: 6px 20px 20px 6px;
+        -webkit-border-radius: 6px 20px 20px 6px;
+        border-radius: 6px 20px 20px 6px;
+        -khtml-border-radius: 6px 20px 20px 6px;
+        -ms-border-radius: 6px 20px 20px 6px;
+}
 #top-links-container li .top-link i {
 	font-size:.8em;
 	right:3px;
@@ -548,6 +556,7 @@ header .full-width {
 	vertical-align: middle;
 	width:100%;
 }
+#sthoverbuttons {display:none !important;}
 a span.hover,.hover span.hover {display:inline-block !important;}
 #top-links-container li .my-briefcase {
 	background:#e9b440;
@@ -568,6 +577,13 @@ a span.hover,.hover span.hover {display:inline-block !important;}
 #top-links-container li .search {
 	background:#0b79bf;
 	background:rgba(11,121,191,1);
+}
+#top-links-container li .products {
+	background:#0b79f;
+	background:rgba(11,121,191,1);
+}
+#top-links-container li .social-icon {
+	background:gray;
 }
 #top-links-container li .search {
 	-moz-border-radius: 6px 20px 20px 6px !important;
@@ -1882,13 +1898,15 @@ ul.detail-actions-list li {
 }
 .filter-select {margin:0 5px 12px 0;}
 #prod_collection label {
+	padding-top: 6px;
 	display: block;
 	font-weight: 700;
-	margin:0 0 5px 0;
+	margin:0 13px -5px 10px;
 }
 .select-filter-container {
 	display: block;
 	margin:0 0 10px 0;
+	background: #EEEEEE;
 }
 #myBriefcase .briefcase-list {width:100% !important;}
 #myBriefcase .briefcase-list li select {width: 60.75%;}
@@ -2504,17 +2522,18 @@ top: -68px;
 	}
 	.select-filter-container {
 		display: inline-block;
-		margin:0 2% 20px 0;
+		margin:0 2% 3px 0;
 		vertical-align: middle;
 	}
 	.select-filter-container span {
 		background: #EEEEEE;
 		display: block;
 		padding:1% 10px;
+		
 	}
 	.select-filter-container span select {
 		display: inline-block;
-		margin:10px 0;
+		margin:3px 0;
 		vertical-align: top;
 		width:100%;
 	}
@@ -2587,6 +2606,9 @@ top: -68px;
 		display: inline-block;
 		margin:0 0 0 24px;
 		vertical-align: middle;
+	}
+	#top-links-container li.social {
+		margin:0 0 0 4px;
 	}
 	#logo-container {float:left;}
 	#logo-container.span_5 { width:30.5625%;}
@@ -3034,3 +3056,4 @@ top: -68px;
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3 { page-break-after: avoid; }
 }
+
