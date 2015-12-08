@@ -83,7 +83,8 @@ get_header(); ?>
 			    				position: fixed; 
 			    				left: 50%; 
 			    				top: 50%;
-			    			}			    			
+			    			}
+			    			@media print { .closure_text a:link:after, .closure_text a:visited:after { content:''; } {} header, footer, div.content, #sidebar-container, #product-filter-mobile, .view-your-briefcase, .content-image-header, #sthoverbuttons, .container-col1 > h1, .product-filter-table > thead, .product-filter-table tbody > tr:not(.modalShow) {display:none} .moreInfo tbody tr {display:table !important;width: 100%} .moreInfo tbody tr td {width: 50% !important;} div#content-container {width: 100%} .print_logo img {max-width: 30% !important} img {max-width: 100% !important} }
 			    		</style>
 						<script src='<?php bloginfo('template_url'); ?>/_js/search_for_products.js'></script>
 						<div id='ajax_working'></div>

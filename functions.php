@@ -731,7 +731,7 @@ function create_filter_dropdown() {
 
 	$query = filter_contraints();
 
-	$dropDown = "<h3 class='widget-title'>Refine Product Search©</h3>";
+	$dropDown = "<h3 class='widget-title'>Refine Product Search</h3>";
 	$dropDown .= "<div><b><label for='show_product_id'>Product ID</label></b><span class='clearfix'><input type='text' style='width:90%' name='show_product' id='show_product_id' placeholder='e.g. 1346' /><a class='showProductLink'>Find Product</a></span></div><hr />";
 
   $dropDown .= "<form class='customSearch' action='create_filter_dropdown' method='post'><input type='hidden' id='productLine' name='productLineId' value='$productLineId' />";
