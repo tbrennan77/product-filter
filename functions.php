@@ -1,13 +1,4 @@
 <?php
-
-require_once 'php-activerecord/ActiveRecord.php';
- 
- ActiveRecord\Config::initialize(function($cfg)
- {
-   $cfg->set_model_directory('models');
-   $cfg->set_connections(array('production' =>
-     'mysql://pipelio9_dbadmin:P1p3l1n3!@localhost/pipelio9_wpcms'));
- });
 /**
  * TwentyTen functions and definitions
  *
@@ -670,278 +661,67 @@ function custom_wysiwyg( $init ) {
 add_filter('tiny_mce_before_init', 'custom_wysiwyg');
 */
 
-/*=========================PACKAGING GLOSSARY=========================*/
-function find_category_options() {
-  $category_name      = 'filter_2';
-  $selected_category  = $_GET[$category_name];
-	$categories 			  = mysql_query("SELECT distinct(filter_2) FROM packaging_glossary");
-  $category_options[] = "<option value=''>Filter by Category</option>";
-  
-	while($category = mysql_fetch_array($categories)){
-		$selected = "";
-		if ($selected_category == $category[$category_name]) {
-			$selected = "selected";
-		}
-		$category_options[] = "<option value='" . $category[$category_name] . "'$selected>" . $category[$category_name] ."</option>";
-	}
-	return implode("\n", $category_options);
-}
-
-function find_alpha_options() {
-  $alpha_name      = 'filter_1';  
-  $selected_alpha  = $_GET[$alpha_name];  
-	$alpha_nums 		 = mysql_query("SELECT distinct(filter_1) FROM packaging_glossary");
-  $alpha_options[] = "<option value=''>Filter by Alphabet</option>";
-	while($alpha = mysql_fetch_array($alpha_nums)){
-		$selected = "";
-		if ($selected_alpha == $alpha[$alpha_name]) { 
-			$selected = "selected";
-		}     
-		$alpha_options[] = "<option value='" . $alpha[$alpha_name] . "'$selected>" . $alpha[$alpha_name] ."</option>";
-	}
-	return implode("\n", $alpha_options);
-}
-
-function glossary_filter() {
-	$alpha_options    = find_alpha_options();
-	$category_options = find_category_options();
-
-	echo "<div id='packaging-glossary'>";
-	
-	echo "<select id='filter_1'>$alpha_options</select>";
-  echo "<select id='filter_2'>$category_options</select>";
-	  
-  echo "<span class='reset-glossary'>Reset</span>";
-}
-
-function get_glossary() {
-	
-	//GET THE FILTERS
-	$filter_1 = $_GET['filter_1'];
-	$filter_2 = $_GET['filter_2'];
-	
-	if ( !($filter_1 == NULL) && !($filter_2 == NULL) ) { //if both filters are used
-	
-		$query=mysql_query("SELECT * FROM packaging_glossary WHERE filter_1 = '" . $filter_1 . "' AND (filter_2='" . $filter_2 . "' OR filter_3 = '" . 
-$filter_2 . "' OR filter_4 = '" . $filter_2 . "' OR filter_5 = '" . $filter_2 . "' OR filter_6 = '" . $filter_2 . "' OR filter_7 = '" . $filter_2 . "')");
-		
-	} elseif ( !($filter_1 == NULL) && ($filter_2 == NULL) ) { //if only the alhpa/num filter is used
-	
-		$query=mysql_query("SELECT * FROM packaging_glossary WHERE filter_1 = '" . $filter_1 . "'");
-		
-	} elseif ( ($filter_1 == NULL) && !($filter_2 == NULL) ) { //if only the category filter is used
-		
-		$query=mysql_query("SELECT * FROM packaging_glossary WHERE filter_2='" . $filter_2 . "' OR filter_3 = '" . $filter_2 . "' OR filter_4 = '" . $filter_2 . "' OR filter_5 = '" . $filter_2 . "' OR filter_6 = '" . $filter_2 . "' OR filter_7 = '" . $filter_2 . "'");
-		
-	} else { //if no filter is used
-	
-		$query=mysql_query("SELECT * FROM packaging_glossary");
-		
-	}
-	
-	//DISPLAY THE CURRENT SEARCH FILTERS BEING USED
-	if (!($filter_1 == NULL) && !($filter_2 == NULL)) {
-	
-		echo "<p><i>Currently viewing all of the terms that start with <b>\"" . $filter_1 . "\"</b> in the <b>\"" . $filter_2 . "\"</b> category.</i></p>";
-	
-	} elseif (!($filter_1 == NULL) && ($filter_2 == NULL)) {
-	
-		echo "<p><i>Currently viewing all of the terms that start with <b>\"" . $filter_1 . "\"</b>.</i></p>";
-	
-	} elseif (($filter_1 == NULL) && !($filter_2 == NULL)) {
-	
-		echo "<p><i>Currently viewing all of the terms in the <b>\"" . $filter_2 . "\"</b> category.</i></p>";
-	
-	} else {}
-	
-	//DISPLAY THE TABLE WITH RESULTS
-	echo "<table id='general-table'><tbody>";
-	while($row = mysql_fetch_array($query)){ 
-	    $glossary_entry .= "<tr>
-	    					<td>" . $row['term'] ."</td>
-	    					<td>" . $row['definition'] . "</td></tr>";
-    }
-    echo $glossary_entry;
-    echo "</tbody></table>";
-    echo "</div>";	
-   /*
- if (!$query) { // add this check.
-	    die('Invalid query: ' . mysql_error());
-	}
-*/
-}
 /*=========================CUSTOM SHORTCODES=========================*/
-
-function add_divider( $atts ){
- return '<div class="divider"></div>';
+function product_show_page() {
+	ob_start();  
+	include('product_show.php');
+	return ob_get_clean();
 }
-add_shortcode( 'divider', 'add_divider' );
 
-function packaging_glossary(){
-	echo glossary_filter();
-	echo get_glossary();
+function product_filter_results_page($atts) {
+	ob_start();
+	include('filter_results.php');
+	return ob_get_clean();
 }
-add_shortcode( 'packaging_glossary', 'packaging_glossary' );
 
+function product_filters_page() {
+	ob_start();
+	include('product_filters.php');
+	return ob_get_clean();
+}
 
+function add_divider(){
+	return '<div class="divider"></div>';
+}
+
+add_shortcode("divider", "add_divider");
+add_shortcode("product_show", "product_show_page");
+add_shortcode("product_filter_results", "product_filter_results_page");
+add_shortcode("product_filter_dropdowns", "product_filters_page");
+
+function ajax_product_filter() {		
+	echo do_shortcode('[product_filter_results]');
+}
 
 /*=========================PRODUCT FILTER=========================*/
-
-function search_for_products(){
-	session_start();
-
-  // Gather input
-  $productLineId = $_POST['productLineId'];  
-  $filter = filter_contraints();
-  $briefcase_ids = $_SESSION['briefcase'];
-
-  // Do Work
-  $query = mysql_query(sprintf("SELECT *, products.id AS product_id FROM products JOIN product_lines ON product_lines.id=products.product_line_id where product_line_id = '%s' ", mysql_real_escape_string($productLineId)).$filter." LIMIT 50");
-
-  $normal_header = "<table class='product-filter-table span_16'><thead><tr><th class='thumbnail-cell'>Thumbnail</th><th>Capacity</th><th>Material</th><th colspan='2'>Style</th><th>Color</th><th class='more-info-cell'>Details</th><th class='add-to-briefcase-cell'>Add to Briefcase</th></tr></thead><tbody>";
-  $cans_header = "<table class='product-filter-table span_16'><thead><tr><th class='thumbnail-cell'>Thumbnail</th><th>Capacity</th><th>Material</th><th colspan='2'>Style</th><th>Shape</th><th class='more-info-cell'>Details</th><th class='add-to-briefcase-cell'>Add to Briefcase</th></tr></thead><tbody>";
-  $closings_header = "<table class='product-filter-table span_16'><thead><tr><th class='thumbnail-cell'>Thumbnail</th><th colspan='4'>Material</th><th>Fittings</th><th class='more-info-cell'>Details</th><th class='add-to-briefcase-cell'>Add to Briefcase</th></tr></thead><tbody>";
-  $closures_header = "<table class='product-filter-table span_16'><thead><tr><th class='thumbnail-cell'>Thumbnail</th><th>Material</th><th>Style</th><th>Color</th><th>Lining</th><th>Finish</th><th class='more-info-cell'>Details</th><th class='add-to-briefcase-cell'>Add to Briefcase</th></tr></thead><tbody>";
-  $liner_header = "<table class='product-filter-table span_16'><thead><tr><th class='thumbnail-cell'>Thumbnail</th><th colspan='2'>Capacity</th><th colspan='3'>Material</th><th class='more-info-cell'>Details</th><th class='add-to-briefcase-cell'>Add to Briefcase</th></tr></thead><tbody>";
-  $pails_header = "<table class='product-filter-table span_16'><thead><tr><th class='thumbnail-cell'>Thumbnail</th><th>Capacity</th><th>Gauge</th><th>Un</th><th colspan='2'>Lining</th><th class='more-info-cell'>Details</th><th class='add-to-briefcase-cell'>Add to Briefcase</th></tr></thead><tbody>";
-  $tubes_header = "<table class='product-filter-table span_16'><thead><tr><th class='thumbnail-cell'>Thumbnail</th><th colspan='2'>Material</th><th colspan='3'>Finish</th><th class='more-info-cell'>Details</th><th class='add-to-briefcase-cell'>Add to Briefcase</th></tr></thead><tbody>";
-
-  switch ($productLineId) {
-    case 1:
-			  $products .= $normal_header;        
-        break;
-    case 2:
-        $products .= $cans_header;        
-        break;
-    case 3:
-				$products .= $closings_header;        
-        break;
-		case 4:
-				$products .= $closures_header;        
-        break;
-		case 5:
-				$products .= $normal_header;        
-        break;
-		case 6:
-				$products .= $liner_header;        
-        break;
-		case 7:
-				$products .= $pails_header;        
-        break;
-		case 8:
-				$products .= $tubes_header;        
-        break;
-		default:
-				$products .= $normal_header;        
-	}
-  
-  // Handle errors
-  if ( mysql_num_rows($query) == 0 ) 
-  {
-    $products .= "<tr><td colspan='8' align='center'><h2>There were no results.</h2></td></tr>";
-  } 
-  else
-  {
-
-  // Return results
-    while($row = mysql_fetch_array($query))
-    {    	
-			if (in_array($row['product_id'], $briefcase_ids)) {
-				$briefcase_link = "<a href='#' id='bl".$row['product_id']."' onclick='remove_product_from_briefcase(\"".$row['product_id']."\"); return false;' class='button-link red'>Remove</a>";
-				$briefcase = "<td><a href='#' id='b".$row['product_id']."' onclick='remove_product_from_briefcase(\"".$row['product_id']."\"); return false;'><span class='icon-span my-briefcase'><i class='icon-trash icon-large'></i></span>Remove from my briefcase</a></td>";
-			} else {
-				$briefcase_link = "<a href='#' id='bl".$row['product_id']."' onclick='add_product_to_briefcase(\"".$row['product_id']."\"); return false;' class='button-link yellow'>Add</a>";
-				$briefcase = "<td><a href='#' id='b".$row['product_id']."' onclick='add_product_to_briefcase(\"".$row['product_id']."\"); return false;'><span class='icon-span my-briefcase'><i class='icon-briefcase icon-large'></i></span>Add to my briefcase</a></td>";
-			}
-
-			$image_url = product_image($row['product_line_id'], $row['image_name']);
-    	
-    	$normal_row = "<tr><td class='thumbnail-cell'><img src='".$image_url."' /></td><td>".$row['capacity']."</td><td>".$row['material']."</td><td colspan='2'>".$row['style']."</td><td>".$row['color']."</td><td class='more-info-cell'><a href='#' class='button-link orange' onclick='jQuery(this).parent().parent().next(\"tr\").fadeIn();return false;'>Details</a></td><td class='add-to-briefcase-cell'>".$briefcase_link."</td></tr>";    	
-    	$cans_row = "<tr><td class='thumbnail-cell'><img src='".$image_url."' /></td><td>".$row['capacity']."</td><td>".$row['material']."</td><td colspan='2'>".$row['style']."</td><td>".$row['shape']."</td><td class='more-info-cell'><a href='#' class='button-link orange' onclick='jQuery(this).parent().parent().next(\"tr\").fadeIn();return false;'>Details</a></td><td class='add-to-briefcase-cell'>".$briefcase_link."</td></tr>";    	
-    	$closings_row = "<tr><td class='thumbnail-cell'><img src='".$image_url."' /></td><td colspan='4'>".$row['material']."</td><td>".$row['fittings']."</td><td class='more-info-cell'><a href='#' class='button-link orange' onclick='jQuery(this).parent().parent().next(\"tr\").fadeIn();return false;'>Details</a></td><td class='add-to-briefcase-cell'>".$briefcase_link."</td></tr>";    	
-    	$closures_row = "<tr><td class='thumbnail-cell'><img src='".$image_url."' /></td><td>".$row['material']."</td><td>".$row['style']."</td><td>".$row['color']."</td><td>".$row['lining']."</td><td>".$row['finish']."</td><td class='more-info-cell'><a href='#' class='button-link orange' onclick='jQuery(this).parent().parent().next(\"tr\").fadeIn();return false;'>Details</a></td><td class='add-to-briefcase-cell'>".$briefcase_link."</td></tr>";    	
-    	$liner_row = "<tr><td class='thumbnail-cell'><img src='".$image_url."' /></td><td colspan='2'>".$row['capacity']."</td><td colspan='3'>".$row['material']."</td><td class='more-info-cell'><a href='#' class='button-link orange' onclick='jQuery(this).parent().parent().next(\"tr\").fadeIn();return false;'>Details</a></td><td class='add-to-briefcase-cell'>".$briefcase_link."</td></tr>";    	
-    	$pails_row = "<tr><td class='thumbnail-cell'><img src='".$image_url."' /></td><td>".$row['capacity']."</td><td>".$row['gauge']."</td><td>".$row['un']."</td><td colspan='2'>".$row['lining']."</td><td class='more-info-cell'><a href='#' class='button-link orange' onclick='jQuery(this).parent().parent().next(\"tr\").fadeIn();return false;'>Details</a></td><td class='add-to-briefcase-cell'>".$briefcase_link."</td></tr>";    	
-    	$tubes_row = "<tr><td class='thumbnail-cell'><img src='".$image_url."' /></td><td colspan='2'>".$row['material']."</td><td colspan='3'>".$row['finish']."</td><td class='more-info-cell'><a href='#' class='button-link orange' onclick='jQuery(this).parent().parent().next(\"tr\").fadeIn();return false;'>Details</a></td><td class='add-to-briefcase-cell'>".$briefcase_link."</td></tr>";    	
-		  
-		  switch ($productLineId) {
-		    case 1:
-					  $products .= $normal_row;        
-		        break;
-		    case 2:
-		        $products .= $cans_row;        
-		        break;
-		    case 3:
-						$products .= $closings_row;        
-		        break;
-				case 4:
-						$products .= $closures_row;        
-		        break;
-				case 5:
-						$products .= $normal_row;        
-		        break;
-				case 6:
-						$products .= $liner_row;        
-		        break;
-				case 7:
-						$products .= $pails_row;        
-		        break;
-				case 8:
-						$products .= $tubes_row;        
-		        break;
-				default:
-						$products .= $normal_row;
-			}      			
-
-      $products .= "<tr class='modalShow' style='display: none;'>
-      					<td colspan='8' class='product-filter-item-detail'>
-      					
-  					  <table class='span_16 col detail-actions-list-container'>
-	  					  <tr>
-	                        ".$briefcase."
-	                        <td><a href='/who-we-are/territory-map/'><span class='icon-span see-locations'><i class='icon-map-marker icon-large'></i></span>Find a customer service representative</a></td>
-	                        <td><span class='icon-span phone'><i class='icon-phone icon-large'></i></span><span class='text-span'>Call for availability - 1.877.242.1880</span></td>
-	                        <td valign='middle' class='close-cell'><a href='#' class='close-link' onclick='jQuery(this).parent().parent().parent().parent().parent().parent().fadeOut(); return false;'><span class='icon-span close'><i class='icon-remove'></i></span>Close</a></td>
-	                      </tr>
-	                  </table>
-	                      <span class='span_6 col detail-img'><img src='".$image_url."' /></span>
-	                      <span class='span_10 col detail-product'>
-		                      	<table class='moreInfo'>
-			                        <tr>
-			                        	<td class='span_4'><b>Product Line:</b></td>
-			                        	<td class='span_12'> ".$row['name']."</td>
-			                        </tr>";
-			                      $attributes = array('finish', 'shape', 'color', 'capacity', 'material', 'style', 'un', 'lining', 'closures', 'product_type', 'fittings', 'gauge', 'comments', 'thickness', 'pleated', 'anti_state', 'diameter', 'min_length', 'max_length', 'product_attributes');
-			                        foreach ($attributes as &$attribute) {
-														    if ($row[$attribute] != '') {
-														    	$pretty_word = str_replace('product_type', 'type', $attribute);
-														    	$pretty_word = str_replace('anti_state', 'anti_static', $pretty_word);
-														    	$pretty_word = str_replace('_', '-', $pretty_word);
-														    	$pretty_word = ucwords($pretty_word);
-														    	$pretty_word = str_replace('Un', 'UN', $pretty_word);
-															    
-															    $products .=
-					                        "<tr>
-					                        	<td><b>".$pretty_word.":</b></td>
-					                        	<td> ".$row[$attribute]."</td>
-					                        </tr>";
-					                      }
-															}
-			                      $products .= 
-		                        "</table>
-		                        <p class='view-your-briefcase'><a href='/products/my-briefcase' class='button-link yellow'>View Your Briefcase</a></p>
-	                      </span>
-                    </td></tr>";
-    }
-  }
-  
-  $products .= "</tbody></table>";
-
-  echo($products);
+function ajax_filter_dropdown() {
+  echo do_shortcode('[product_filter_dropdowns]');
 }
 
+//function create_filter_dropdown() {
+//	echo do_shortcode('[product_filter_dropdowns]');
+//}
+
 function create_filter_dropdown() {
-	$filter_attributes = array('finish', 'shape', 'color', 'capacity', 'material', 'style', 'un', 'lining', 'closures', 'product_type', 'fittings', 'gauge', 'comments', 'thickness', 'pleated', 'anti_state', 'diameter', 'min_length', 'max_length', 'product_attributes'); 
+	$filter_attributes = array(
+    'finish',
+    'shape',
+    'color',
+    'capacity',
+    'material',
+    'style',
+    'un',
+    'lining',
+    'product_type',
+    'fittings',
+    'gauge',
+    'thickness',
+    'pleated',
+    'anti_state',    
+    'diameter', 
+    'min_length',
+    'max_length'
+  ); 
 
 	if ($_POST['productLineId']) {
 		$productLineId = $_POST['productLineId'];
@@ -951,9 +731,12 @@ function create_filter_dropdown() {
 
 	$query = filter_contraints();
 
-  $dropDown = "<h3 class='widget-title'>Refine Your Search</h3><form class='customSearch' action='create_filter_dropdown' method='post'><input type='hidden' id='productLine' name='productLineId' value='".$productLineId."' />";
-  $dropDown .= "<div id='prod_collection' style='display: block;'>";
+	$dropDown = "<h3 class='widget-title'>Refine Product Search©</h3>";
+	$dropDown .= "<div><b><label for='show_product_id'>Product ID</label></b><span class='clearfix'><input type='text' style='width:90%' name='show_product' id='show_product_id' placeholder='e.g. 1346' /><a class='showProductLink'>Find Product</a></span></div><hr />";
 
+  $dropDown .= "<form class='customSearch' action='create_filter_dropdown' method='post'><input type='hidden' id='productLine' name='productLineId' value='$productLineId' />";
+  $dropDown .= "<div id='prod_collection' style='display: block;'>";
+  
   foreach ($filter_attributes as &$attribute) {
 
 		$pretty_word = str_replace('product_type', 'type', $attribute);
@@ -962,7 +745,7 @@ function create_filter_dropdown() {
   	$pretty_word = ucwords($pretty_word);
   	$pretty_word = str_replace('Un', 'UN', $pretty_word);
 
-		$attr_query = mysql_query("SELECT distinct($attribute) FROM products where product_line_id = '$productLineId' and $attribute != 'NULL'".$query." order by $attribute");
+		$attr_query = mysql_query("SELECT DISTINCT($attribute) FROM products WHERE product_line_id = $productLineId AND $attribute != 'NULL' $query ORDER BY $attribute");
 
 		if ( mysql_num_rows($attr_query) > 0 ) {
 	    $dropDown .=  "<div class='select-filter-container'><label>$pretty_word</label><span class='clearfix'><select class='filter-select' name='$attribute'><option value=''></option>";
@@ -972,7 +755,7 @@ function create_filter_dropdown() {
 	         if($row_stock[$attribute] == $_POST[$attribute]) {
 	         	$dropDown .= "selected='selected' ";
 	         }
-	         $dropDown .= "value=\"$row_stock[$attribute]\">$row_stock[$attribute]</option>";
+	         $dropDown .= "value='{$row_stock[$attribute]}'>{$row_stock[$attribute]}</option>";
 	      }                       
 		   $dropDown .= "</select><a href='#' class='resetLinker' onclick=\"reset_my('$attribute'); return false;\">Reset</a></span></div>";
 	  }
@@ -984,95 +767,38 @@ function create_filter_dropdown() {
   echo($dropDown);
 }
 
-// Set params functions
-$host = $_SERVER['HTTP_HOST']; 
-if ($host == "www.boondockstaging.com" or $host == "boondockstaging.com") {
-	function set_params_from($url) {
-		if ($url == "/pipeline/products/bottles-cubitainers-and-jars/") {
-		  $product_line_id = 1;
-		} else if ($url == "/pipeline/products/cans/") {
-		  $product_line_id = 2;
-		} else if ($url == "/pipeline/products/closing-tools/") {
-		  $product_line_id = 3;
-		} else if ($url == "/pipeline/products/closures/") {
-		  $product_line_id = 4;
-		} else if ($url == "/pipeline/products/drums-and-totes/") {
-		  $product_line_id = 5;
-		} else if ($url == "/pipeline/products/liners/") {
-		  $product_line_id = 6;
-		} else if ($url == "/pipeline/products/pails-and-tubs/") {
-		  $product_line_id = 7;
-		} else if ($url == "/pipeline/products/tubes/") {
-		  $product_line_id = 8;
-		}
-		return $product_line_id;
-	}
-} else {
-	function set_params_from($url) {
-		if ($url == "/products/bottles-cubitainers-and-jars/") {
-		  $product_line_id = 1;
-		} else if ($url == "/products/cans/") {
-		  $product_line_id = 2;
-		} else if ($url == "/products/closing-tools/") {
-		  $product_line_id = 3;
-		} else if ($url == "/products/closures/") {
-		  $product_line_id = 4;
-		} else if ($url == "/products/drums-and-totes/") {
-		  $product_line_id = 5;
-		} else if ($url == "/products/liners/") {
-		  $product_line_id = 6;
-		} else if ($url == "/products/pails-and-tubs/") {
-		  $product_line_id = 7;
-		} else if ($url == "/products/tubes/") {
-		  $product_line_id = 8;
-		}
-		return $product_line_id;
-	}
-}
 
-// Filter Constraints
-function filter_contraints() {
-  $filter_attributes = array('finish', 'shape', 'color', 'capacity', 'material', 'style', 'un', 'lining', 'closures', 'product_type', 'fittings', 'gauge', 'comments', 'thickness', 'pleated', 'anti_state', 'diameter', 'min_length', 'max_length', 'product_attributes'); 
 
-	foreach ($filter_attributes as &$attribute) {
-		if ($_POST[$attribute] != NULL) {
-	    $filter .= sprintf("AND $attribute LIKE '%s' ", mysql_real_escape_string($_POST[$attribute]));
-	  }
-	}
-
-  return $filter;
-}
-
-function product_image($product_line_id, $image_name) {
+function briefcase_product_image($product_line_id, $image_name) {
 	if ($image_name != NULL && $image_name != "image-coming-soon.jpg") {
 	 switch ($product_line_id) {
-		    case 1:
-					  $product_image = '/product-images/Bottles-Jars-Cubetainers/'.$image_name;        
-		        break;
-		    case 2:
-					  $product_image = '/product-images/Cans/'.$image_name;        
-		        break;		    
-				case 3:
-					  $product_image = '/product-images/Closing-tools/'.$image_name;        
-		        break;
-				case 4:
-					  $product_image = '/product-images/Closures/'.$image_name;        
-		        break;
-				case 5:
-					  $product_image = '/product-images/Drums/'.$image_name;        
-		        break;
-				case 6:
-					  $product_image = '/product-images/Liners/'.$image_name;        
-		        break;
-				case 7:
-					  $product_image = '/product-images/Pails/'.$image_name;        						
-		        break;				
-				case 8:
-					  $product_image = '/product-images/Tubes/'.$image_name;        						
-		        break;
-				default:
-					  $product_image = '/product-images/image-coming-soon.jpg';        
-			}   
+      case 1:
+          $product_image = '/product-images/Bottles-Jars-Cubetainers/'.$image_name;        
+          break;
+      case 2:
+          $product_image = '/product-images/Cans/'.$image_name;        
+          break;		    
+      case 3:
+          $product_image = '/product-images/Closing-tools/'.$image_name;        
+          break;
+      case 4:
+          $product_image = '/product-images/Closures/'.$image_name;        
+          break;
+      case 5:
+          $product_image = '/product-images/Drums/'.$image_name;        
+          break;
+      case 6:
+          $product_image = '/product-images/Liners/'.$image_name;        
+          break;
+      case 7:
+          $product_image = '/product-images/Pails/'.$image_name;        						
+          break;				
+      case 8:
+          $product_image = '/product-images/Tubes/'.$image_name;        						
+          break;
+      default:
+          $product_image = '/product-images/image-coming-soon.jpg';        
+    }   
 	} else {
 	  $product_image = '/product-images/image-coming-soon.jpg';
 	}	
@@ -1080,10 +806,41 @@ function product_image($product_line_id, $image_name) {
 	return $product_image;   
 }
 
+// Set params functions
+function set_params_from($url) {
+	if ($url == "/products/bottles-cubitainers-and-jars/") {
+	  $product_line_id = 1;
+	} else if ($url == "/products/cans/") {
+	  $product_line_id = 2;
+	} else if ($url == "/products/closing-tools/") {
+	  $product_line_id = 3;
+	} else if ($url == "/products/closures/") {
+	  $product_line_id = 4;
+	} else if ($url == "/products/drums-and-totes/") {
+	  $product_line_id = 5;
+	} else if ($url == "/products/liners/") {
+	  $product_line_id = 6;
+	} else if ($url == "/products/pails-and-tubs/") {
+	  $product_line_id = 7;
+	} else if ($url == "/products/tubes/") {
+	  $product_line_id = 8;
+	}
+	return $product_line_id;
+}
+
+// Filter Constraints
+function filter_contraints() {
+  $filter_attributes = array('finish', 'shape', 'color', 'capacity', 'material', 'style', 'un', 'lining', 'product_type', 'fittings', 'gauge', 'thickness', 'pleated', 'anti_state', 'diameter', 'min_length', 'max_length');
+	foreach ($filter_attributes as &$attribute) {
+		if ($_POST[$attribute] != NULL) {
+	    $filter .= sprintf("AND $attribute LIKE '%s' ", mysql_real_escape_string($_POST[$attribute]));
+	  }
+	}
+  return $filter;
+}
+
 function display_briefcase() {
 	session_start();
-
-
 	if ($_SESSION['notice'] != NULL) {
 		$notice = "<div class='notice'><h3>".strip_tags($_SESSION['notice'])."</h3></div>";
 	} else {
@@ -1104,19 +861,16 @@ function display_briefcase() {
 	} else {
 	
 	$products = $notice;
-
 	$products .= "<form id='emailBriefcase' method='post' action='/wp-admin/admin-ajax.php' onsubmit='get_product_ids();'>
 									<table class='product-filter-table span_16'>
 									<thead>
 									<tr><th><input type='checkbox' checked='checked' id='toggleCheckBoxes' /></th><th class='thumbnail-cell'>Thumbnail</th><th>Capacity</th><th>Material</th><th>Style</th><th>Color</th><th class='more-info-cell'>Details</th><th class='add-to-briefcase-cell'>Remove from Briefcase</th></tr></thead><tbody>";
 
 	foreach($_SESSION['briefcase'] as $product_id) {
-		$query = mysql_query(sprintf("SELECT *, products.id AS product_id FROM products JOIN product_lines ON products.product_line_id=product_lines.id where products.id = '%s' ", mysql_real_escape_string($product_id)));
+    $query = mysql_query(sprintf("SELECT *, products.id AS product_id FROM products JOIN product_lines ON products.product_line_id=product_lines.id where products.id = '%s' ", mysql_real_escape_string($product_id)));
 		while($row = mysql_fetch_array($query))
       {
-
-      	$image_url = product_image($row['product_line_id'], $row['image_name']);
-    		
+      	$image_url = briefcase_product_image($row['product_line_id'], $row['image_name']);
 	    	$products .= "<tr><td><input class='product_id' type='checkbox' checked='checked' value='".$row['product_id']."' /></td><td class='thumbnail-cell'><img src='".$image_url."' /></td><td>".$row['capacity']."</td><td>".$row['material']."</td><td>".$row['style']."</td><td>".$row['color']."</td><td class='more-info-cell'><a href='#' class='button-link orange' onclick='jQuery(this).parent().parent().next(\"tr\").fadeIn();return false;'>Details</a></td><td class='add-to-briefcase-cell'><a href='#' id='removeLink".$row['product_id']."'onclick='remove_product_from_briefcase(\"".$row['product_id']."\"); return false;' class='button-link red'>Remove</a></td></tr>";
 				$products .= "<tr class='modalShow' style='display: none;'>
       					<td colspan='8' class='product-filter-item-detail'>
@@ -1132,7 +886,11 @@ function display_briefcase() {
 			                      <span class='span_6 col detail-img'><img src='".$image_url."' /></span>
 			                      <span class='span_10 col detail-product'>
 				                      	<table class='moreInfo'>
-					                        <tr>
+								<tr>
+                                                                        <td class='span_4'><b>Product Id:</b></td>
+                                                                        <td class='span_12'> ".$row['product_id']."</td>
+                                                                </tr>					                       
+ 								<tr>
 					                        	<td class='span_4'><b>Product Line:</b></td>
 					                        	<td class='span_12'> ".$row['name']."</td>
 					                        </tr>";
@@ -1153,7 +911,10 @@ function display_briefcase() {
 							                      }
 																	}
 					                      $products .= 
-				                        "</table>				                        
+				                        "</table><p class='view-your-briefcase'>
+                                                
+                                                <a href='javascript:window.print();' class='button-link orange' style='margin-right: 1rem;'>Print</a>
+                                        </p>				                        
 			                      </span>
 		                    </td></tr>";
 		   
@@ -1161,6 +922,7 @@ function display_briefcase() {
 		}
 
   $products .= "</tbody></table>";
+$products .= "<style>@media print { .closure_text a:link:after, .closure_text a:visited:after { content:''; } header, footer, div.content *:not(#myBriefcase):not(#emailBriefcase):not(.product-filter-table):not(tbody):not(.modalShow):not(.product-filter-item-detail), #sidebar-container, #product-filter-mobile, .view-your-briefcase, .content-image-header, #sthoverbuttons, .container-col1 > h1, .product-filter-table > thead, .product-filter-table tbody > tr:not(.modalShow), .view-your-briefcase {display:none} .moreInfo tbody tr {display:table !important;width: 100%} .moreInfo tbody tr td {width: 50% !important;} div#content-container {width: 100%} .print_logo img {max-width: 30% !important} img {max-width: 100% !important} .product-filter-item-detail span, .product-filter-item-detail span *:not(.view-your-briefcase) {display:table !important } .moreInfo tbody tr {display:table !important;} .product-filter-item-detail span .moreInfo tbody tr td {display: table-cell !important;} .container-col1.clearfix {margin-top: 0px;} .moreInfo tbody {width:100%;}     }</style>";
 	$products .= "<p class='clearfix'><a href='#' class='button-link orange' onclick='empty_briefcase(); return false;'>clear briefcase</a></p>";
 	$products .= $error_messages;
 	$states = '<select id="state" name="state"><option value="" selected="selected"></option>
@@ -1234,7 +996,6 @@ function display_briefcase() {
 
 	$_SESSION['errors'] = NULL;
 	$_SESSION['notice'] = NULL;
-
 	echo $products;
 }
 
@@ -1304,9 +1065,13 @@ function send_briefcase_email() {
 		$checked_briefcase_ids = explode(",", $_POST['product_ids']);
 
 		foreach($checked_briefcase_ids as $index) {
-			$query = mysql_query(sprintf("SELECT *, product_lines.name as product_line_name FROM products JOIN product_lines on products.product_line_id=product_lines.id where products.id = '%s' ", mysql_real_escape_string($index)));
+			$query = mysql_query(sprintf("SELECT *, products.id as product_id, product_lines.name as product_line_name FROM products JOIN product_lines on products.product_line_id=product_lines.id where products.id = '%s' ", mysql_real_escape_string($index)));
 			while($row = mysql_fetch_array($query)) {
-				$body .= "<li><table>				
+				$body .= "<li><table>
+<tr>
+                <td class='span_4'><b>Product ID:</b></td>
+                <td class='span_12'> ".$row['product_id']."</td>
+              </tr>				
 				     <tr>
               	<td class='span_4'><b>Product Line:</b></td>
               	<td class='span_12'> ".$row['product_line_name']."</td>
@@ -1333,6 +1098,7 @@ function send_briefcase_email() {
 		$body .= "</ol>";
 
 		$to = "lkirkland@pipelinepackaging.com, ssmith@pipelinepackaging.com";
+
 		$subject = "Briefcase";
 		$headers = "From: ".strip_tags($_POST['name'])." <".strip_tags($_POST['email']).">" . "\r\n";
 		$headers .= "MIME-Version: 1.0\r\n";
@@ -1400,11 +1166,11 @@ function add_briefcase_dashboard_widget() {
 add_action('wp_dashboard_setup', 'add_briefcase_dashboard_widget' );
 
 // create custom Ajax call for WordPress
-add_action( 'wp_ajax_nopriv_search_for_products', 'search_for_products' );
-add_action( 'wp_ajax_search_for_products', 'search_for_products' );
+add_action( 'wp_ajax_nopriv_search_for_products', 'ajax_product_filter' );
+add_action( 'wp_ajax_search_for_products', 'ajax_product_filter' );
 
-add_action( 'wp_ajax_nopriv_create_filter_dropdown', 'create_filter_dropdown' );
-add_action( 'wp_ajax_create_filter_dropdown', 'create_filter_dropdown' );
+add_action( 'wp_ajax_nopriv_create_filter_dropdown', 'ajax_filter_dropdown' );
+add_action( 'wp_ajax_create_filter_dropdown', 'ajax_filter_dropdown' );
 
 add_action( 'wp_ajax_nopriv_set_briefcase_item', 'set_briefcase_item' );
 add_action( 'wp_ajax_set_briefcase_item', 'set_briefcase_item' );

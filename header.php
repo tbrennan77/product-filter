@@ -82,6 +82,22 @@ if( is_page() ) {
 }
 /* ]]> */
 </script>
+
+<style>
+.print_logo {display:none;}
+
+@media print {
+  .container-col1.clearfix {margin-top: -80px;}
+  .product_count {display:none;}
+  .print_logo {display:block;padding: 0 2% 0px 2%;}
+  .print_logo h1 {text-align: right; font-style:italic}
+}
+</style>
+
+<div class='print_logo'>
+  <img src="<?php bloginfo( 'template_directory' ); ?>/_img/print_logo.png" alt="Pipeline Packaging"  title="Pipeline Packaging" />
+</div>
+
 <script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion_async.js"></script>
 	<header>
 		<div class="full-width clearfix colorbar">
@@ -95,6 +111,7 @@ if( is_page() ) {
 	    				<li><a href="http://pipelinepackaging.com/get-in-touch/" class="top-link contact-us"><i class="icon-envelope-alt icon-large"></i><span>Contact Us</span></a></li>
 	    				<li><a href="http://pipelinepackaging.com/who-we-are/about-pipeline/" class="top-link about-us"><i class="icon-info-sign icon-large"></i><span>About Us</span></a></li>
 	    				<li><a href="#" class="top-link phone"><i class="icon-phone icon-large"></i><span>877.242.1880</span></a></li>
+					<li><a href="/products/product-overview" class="top-link products"><i class="icon-shopping-cart icon-large"></i><span>Search Products</span></a></li>
 	    				<li><form role="search" method="get" id="searchform" action="<?php echo home_url( '/' ); ?>">
 		    					<span class="top-link search">
 		    						<i class="icon-search icon-large"></i>
@@ -102,6 +119,9 @@ if( is_page() ) {
 		    					</span>
 	    					</form>
 	    				</li>
+					<li class="social"><a href="javascript:void(0)" class="top-link social-icon" onclick="$('.st_twitter_large span span.stLarge')[0].click()"><i class="icon-twitter-sign icon-large"></i><span>Tweet</span></a></li>
+					<li class="social"><a href="javascript:void(0)" class="top-link social-icon" onclick="$('.st_facebook_large span span.stLarge')[0].click()"><i class="icon-facebook-sign icon-large"></i><span>Share</span></a></li>
+					<li class="social"><a href="javascript:void(0)" class="top-link social-icon" onclick="$('.st_linkedin_large span span.stLarge')[0].click()"><i class="icon-linkedin-sign icon-large"></i><span>Share</span></a></li>
 	    			</ul>
 	    		</div>
 	    		<div id="logo-container" class="span_5">

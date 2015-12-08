@@ -25,14 +25,13 @@ get_header(); ?>
 		    		<div class="content"> 
 		    			<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 			    			<div class="span_6 product-group-image"><img src="<?php the_field('image'); ?>" alt="<?php the_field('image_alt_text'); ?>" class="aligncenter" /></div><?php the_content(); ?>
+			    			<!-- Begin product filter results -->
 			    		<?php endwhile; ?>
-			    	</div>
-			    	<div class="divider"></div>
+			    	</div>			    	
 			    	<div id="product-filter-results-container">
 			    	<div id="product-filter-mobile">
 			    		<?php create_filter_dropdown(); ?>
-			    	</div>
-<!--------------------------------------------------------//PRODUCT FILTER RESULTS GO HERE//-------------------------------------------------------->
+			    	</div>			
 						<script>
 			    		function add_product_to_briefcase(product_id) {
 						    jQuery.ajaxSetup({ 
@@ -84,7 +83,7 @@ get_header(); ?>
 			    				position: fixed; 
 			    				left: 50%; 
 			    				top: 50%;
-			    			}
+			    			}			    			
 			    		</style>
 						<script src='<?php bloginfo('template_url'); ?>/_js/search_for_products.js'></script>
 						<div id='ajax_working'></div>
@@ -100,15 +99,7 @@ get_header(); ?>
 				      jQuery(stuff).attr('selected', true);				      				      
 				    }
 				    </script>
-						<?php 
-				      $product_line_id = set_params_from($_SERVER["REQUEST_URI"]);
-              
-              echo "<div id=pTable>";              	
-                search_for_products($_POST['productLineId'] = $product_line_id);
-              echo "</div>";						 
-						 ?>
-						 
-<!--------------------------------------------------------//PRODUCT FILTER RESULTS END HERE//-------------------------------------------------------->
+						<?php $product_line_id = set_params_from($_SERVER["REQUEST_URI"]); ?>
 			    	</div>
 	    		</div>
 	    	</div>
@@ -116,3 +107,15 @@ get_header(); ?>
     	</div>
     	</div>
 <?php get_footer(); ?>
+
+<link rel="stylesheet" href="/wp-content/themes/viewportindustries-Starkers-689d7e6/_css/jquery.windoze.plain.css">
+<script src="/wp-content/themes/viewportindustries-Starkers-689d7e6/_js/jquery.windoze.plain.js"></script>
+
+<div class="wdz-modal">
+      <article style="width: 20%;text-align: center;padding: 3rem;">
+        <h1 style="color:#0B79BF">Oops...</h1>
+        <p>You must enter a product ID.</p>
+      </article>
+    </div>
+
+<script>$('.wdz-modal').windoze({animation: 'slide-top'});</script>

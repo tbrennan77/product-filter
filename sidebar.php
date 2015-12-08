@@ -62,7 +62,9 @@
 		    			<div class="column-image-header"></div>
 			    		<div class="column-content">
 			 												
-						<div id="product-filter-container"><?php create_filter_dropdown(); ?></div>
+						<div id="product-filter-container">							
+							<?php ajax_filter_dropdown(); ?>
+						</div>
 						<?php if ( ! dynamic_sidebar( 'global-misc-widget-area' ) ) : ?><?php endif;?>						
 						<?php if ( ! dynamic_sidebar( 'products-widget-area' ) ) : ?><?php endif;?>
 						

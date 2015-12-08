@@ -24,7 +24,7 @@ get_header(); ?>
 		    		<h1><?php the_title(); ?></h1>
 		    		<div class="span_16 col content"> 
 		    			<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
-			    			<div class="span_6 industry-image"><img src="<?php the_field('image'); ?>" alt="<?php the_field('image_alt_text'); ?>" class="aligncenter" /></div><?php the_content(); ?>
+			    			<!-- <div class="span_6 industry-image"><img src="<?php the_field('image'); ?>" alt="<?php the_field('image_alt_text'); ?>" class="aligncenter" /></div> --> <?php the_content(); ?>
 			    		<?php endwhile; ?>
 			    	</div>
 	    		</div>

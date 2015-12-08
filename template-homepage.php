@@ -131,25 +131,29 @@ get_header(); ?>
 								<option value="loc6">Des Moines, IA</option>
 								<option value="loc7">Detroit, MI</option>
 								<option value="loc8">Greenville, SC</option>
-								<option value="loc9">Houston, TX</option>
-								<option value="loc10">Kansas City, KS</option>
-								<option value="loc11">Nashville, TN</option>
+								<option value="loc9">Houston, TX - North</option>
+								<option value="loc10">Houston, TX - South</option>
+								<option value="loc11">Kansas City, KS</option>
+								<option value="loc12">Nashville, TN</option>
+								<option value="loc13">Oyster Creek, TX</option>
 							</select>
 							<div id="div-loc1" class="location-container span_8">
 								<p><b>Atlanta, GA</b><br />
 								4175 Royal Drive, Suite 700<br />
 								Kennesaw, GA 30144<br />
+								Toll Free: 800.351.9856<br />
 								Fax: 770.420.7002<br />
-								TF: 800.351.9856</p>
+								Local: 770.420.8181
+								</p>
 							</div>
 							<div id="div-loc2" class="location-container span_8">
 								<p>
 								<b>Charlotte, NC</b><br />
-								2311-B Distribution Center Dr.<br />
-								Charlotte, NC 28269<br />
-								Fax: 704.596.9811<br />
-								TF: 855.596.9909<br />
-<!-- 								Ph: 704.596.9811 -->
+								1430 West Pointe Drive, Suite G<br />
+								Charlotte, NC 28214<br />
+								Toll Free: 855.596.9909<br />
+								Fax: 704.392.9063<br />
+								Local: 704.392.9023
 								</p>
 							</div>
 							<div id="div-loc3" class="location-container span_8">
@@ -157,8 +161,9 @@ get_header(); ?>
 									<b>Cincinnati, OH</b><br />
 									7390 Union Centre Blvd.<br />
 									Fairfield, Ohio 45014<br />
+									Toll Free: 866.677.7245<br />
 									Fax: 513.874.0966<br />
-									TF: 866.677.7245
+									Local: 513.874.6555
 								</p>
 							</div>
 							<div id="div-loc4" class="location-container span_8">
@@ -166,8 +171,9 @@ get_header(); ?>
 									<b>Cleveland, OH</b><br />
 									30310 Emerald Valley Pkwy, Suite 500<br />
 									Glenwillow, OH  44139<br />
+									Toll Free: 800.446.0351<br />
 									Fax: 440.349.2900<br />
-									TF: 877.242.1880
+									Local: 440.349.3200
 								</p>
 							</div>
 							<div id="div-loc5" class="location-container span_8">
@@ -175,8 +181,9 @@ get_header(); ?>
 									<b>Dallas, TX</b><br />
 									3221 East Arkansas Lane, Suite 150<br />
 									Arlington, TX 76010<br />
+									Toll Free: 866.715.7245<br />
 									Fax: 817.385.5885<br />
-									TF: 866.715.7245
+									Local: 817.385.5354
 								</p>
 							</div>
 							<div id="div-loc6" class="location-container span_8">
@@ -184,8 +191,9 @@ get_header(); ?>
 									<b>Des Moines, IA</b><br />
 									1300 S.E. Gateway Drive, Suite 107<br />
 									Grimes, IA 50111<br />
+									Toll Free: 800.321.0850<br />
 									Fax: 515.986.9017<br />
-									TF: 800.321.0850
+									Local: 515.986.2226
 								</p>
 							</div>
 							<div id="div-loc7" class="location-container span_8">
@@ -193,10 +201,9 @@ get_header(); ?>
 									<b>Detroit, MI</b><br />
 									1421 Piedmont Drive<br />
 									Troy, MI  48083<br />
+									Toll Free: 888.983.0248<br />
 									Fax: 248.743.0259<br />
-									TF: 888.983.0248<br />
-									
-<!-- 									Ph: 248.743.0248 -->
+									Local: 248.743.0248
 								</p>
 							</div>
 							<div id="div-loc8" class="location-container span_8">
@@ -204,37 +211,59 @@ get_header(); ?>
 									<b>Greenville, SC</b><br />
 									1010 East North Street, Suite D3<br />
 									Greenville, SC 29601<br />
+									Toll Free: 855.277.0566<br />
 									Fax: 864.277.0957<br />
-									TF: 855.277.0566<br />
-									
-<!-- 									Ph: 864.277.0900 -->
+									Local: 864.277.0900
 								</p>
 							</div>
 							<div id="div-loc9" class="location-container span_8">
 								<p>
-									<b>Houston, TX</b><br />
+									<b>Houston, TX - North</b><br />
 									12777 Jones Road, Suite 105<br />
 									Houston, TX 77070<br />
+									TF: 877.462.1669<br />
 									Fax: 281.477.7524<br />
-									TF: 877.462.1669
+									Local: 281.477.7500
 								</p>
 							</div>
 							<div id="div-loc10" class="location-container span_8">
 								<p>
-									<b>Kansas City, KS</b><br />
-									8230 Marshall Drive<br />
-									Lenexa, KS 66214<br />
-									Fax: 913.888.6363<br />
-									TF: 800.446.4080
+									<b>Houston, TX - South</b><br />
+									7449 E. Orem Drive<br />
+									Houston, TX 77075<br />
+									TF: 844.961.0611<br />
+									Fax: 713.991.0612<br />
+									Local: 713.991.0611
 								</p>
 							</div>
 							<div id="div-loc11" class="location-container span_8">
 								<p>
+									<b>Kansas City, KS</b><br />
+									8230 Marshall Drive<br />
+									Lenexa, KS 66214<br />
+									TF: 800.446.4080<br />
+									Fax: 913.888.6363<br />
+									Local: 913.888.6100
+								</p>
+							</div>
+							<div id="div-loc12" class="location-container span_8">
+								<p>
 									<b>Nashville, TN</b><br />
 									1435-A Heil Quaker Blvd<br />
 									La Vergne, TN 37086<br />
+									TF: 866.518.3800<br />
 									Fax: 615.213.0873<br />
-									TF: 866.518.3800
+									Local: 615.213.0870
+								</p>
+							</div>
+							<div id="div-loc13" class="location-container span_8">
+								<p>
+									<b>Oyster Creek, TX</b><br />
+									1824 FM 523<br />
+									Oyster Creek, TX 77541<br />
+									TF: 844.437.6248<br />
+									Fax: 979.266.8779<br />
+									Local: 979.239.3786
 								</p>
 							</div>
 							<div id="social-container" class="span_16">
