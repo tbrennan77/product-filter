@@ -21,7 +21,8 @@
 						<?php wp_nav_menu( array( 'container' => 'false', 'menu_class' => 'span_2 col', 'theme_location' => 'footer-column-5' ) ); ?>
 		    		</nav>
 		    		<div id="footer-address" class="span_6 col">
-			    		<p><b>Pipeline</b> Packaging</p>
+			    		<p><b>Pipeline</b> Packaging<br>
+			    		<b><i>People at the Core.</i></b></p>
 						<span class="footer-button-container clearfix"><a href="/who-we-are/territory-map/" class="button-link white">See our locations</a></span>
 						<p><b><a onclick="goog_report_conversion('tel:1-877-242-1880')" href="tel:1-877-242-1880" >1.877.242.1880</a></b></p>
 						<p><span id="copyright-legal">Copyright &copy; 2012 Pipeline Packaging | <a href="http://pipelinepackaging.com/pipeline-packaging-privacy-policy-terms-conditions/">Privacy &amp; Legal</a></span></p>
@@ -37,21 +38,11 @@
   		<?php if ( is_front_page() ) {?>
 		<script src="<?php bloginfo( 'template_directory' ); ?>/_js/libs/camera.js"></script>
 		<?php } ?>
-  		<script type="text/javascript">
-
-		  var _gaq = _gaq || [];
-		  _gaq.push(['_setAccount', 'UA-33788820-1']);
-		  _gaq.push(['_setDomainName', 'pipelinepackaging.com']);
-		  _gaq.push(['_setAllowLinker', true]);
-		  _gaq.push(['_trackPageview']);
-		
-		  (function() {
-		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		  })();
-		
-		</script>
+  		
 <?php wp_footer();?>
+
+<div class='print_logo'>
+  <img src="<?php bloginfo( 'template_directory' ); ?>/_img/tagline_print.png" style='float:right' />
+</div>
 </body>
 </html>
