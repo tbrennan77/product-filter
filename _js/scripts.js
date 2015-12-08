@@ -1,3 +1,25 @@
+function findProductId(input) {
+  return $(input).val();
+}
+
+function updateProductLink() {
+  var product_id = findProductId($(this));
+  if (product_id.length) {
+    $('.showProductLink').attr('href', '/products/show?id=' + product_id);
+  }
+}
+
+function checkValue(event) {
+  var product_id  = findProductId($(this).prev('input'));
+  if (!product_id.length) {
+    event.preventDefault();
+    $('.wdz-modal').trigger('open.windoze');
+  }
+}
+
+$(document).on('keyup', '#show_product_id', updateProductLink);
+$(document).on('click', '.showProductLink', checkValue);
+
 $(document).ready(function() {
 	/********************************************************
 		RETINA IMAGES
@@ -169,16 +191,38 @@ $(document).ready(function() {
 	    $(".full-width.colorbar").removeClass("phone-hover");
 	  }
 	);
+	$(".top-link.products").hover(
+	  function () {
+	    $(".top-link.products span").addClass("hover");
+	    $(".full-width.colorbar").addClass("products-hover");
+	  },
+	  function () {
+	    $(".top-link.products span").removeClass("hover");
+	    $(".full-width.colorbar").removeClass("products-hover");
+	  }
+	);
 	$(".search").hover(
 	  function () {
-	    $(".search span").addClass("hover");
+	    $(".top-link.search span").addClass("hover");
 	    $(".full-width.colorbar").addClass("search-hover");
 	  },
 	  function () {
-	    $(".search span").removeClass("hover");
+	    $(".top-link.search span").removeClass("hover");
 	    $(".full-width.colorbar").removeClass("search-hover");
 	  }
 	);
+	$(".social-icon").hover(
+          function () {
+	    $(this).find('span').addClass('hover');
+            //$(".top-link.search span").addClass("hover");
+            $(".full-width.colorbar").addClass("social-hover");
+          },
+          function () {
+	    $(this).find('span').removeClass('hover');
+            //$(".top-link.search span").removeClass("hover");
+            $(".full-width.colorbar").removeClass("social-hover");
+          }
+        );
 	$("#top-links-container .search").hover(
 	  function () {
 	    $(this).addClass("hover");
@@ -192,6 +236,7 @@ $(document).ready(function() {
 	*********************************************************/	
 	
 	$(".ss-nav-menu-item-0").addClass("no-left-padding");
+	$(".ss-nav-menu-item-0").addClass("no-right-padding");
 	
 	/********************************************************
 		HOMEPAGE QUICK TABS
@@ -323,6 +368,8 @@ $(document).ready(function() {
 		RANDOM SIDEBAR BACKGROUND IMAGES
 	*********************************************************/
 	var images = [
+				  'sidebar-header-images_1_pipeline_packaging.jpg', 	
+				  'sidebar-header-images_2_pipeline_packaging.jpg', 	
 				  'sidebar-header-images_3_pipeline_packaging.jpg', 
 				  'sidebar-header-images_4_pipeline_packaging.jpg', 
 				  'sidebar-header-images_5_pipeline_packaging.jpg',
@@ -336,6 +383,7 @@ $(document).ready(function() {
 				  'sidebar-header-images_13_pipeline_packaging.jpg',
 				  'sidebar-header-images_14_pipeline_packaging.jpg',
 				  'sidebar-header-images_15_pipeline_packaging.jpg',
+				  'sidebar-header-images_16_pipeline_packaging.jpg', 
 				  'sidebar-header-images_17_pipeline_packaging.jpg',
 				  'sidebar-header-images_18_pipeline_packaging.jpg',
 				  'sidebar-header-images_19_pipeline_packaging.jpg',
