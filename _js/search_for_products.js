@@ -3,24 +3,26 @@ jQuery(document).ready(function() {
     jQuery.ajaxSetup({
       beforeSend: function() {
         jQuery("#ajax_working").fadeIn();
-        jQuery("#pTable").fadeOut("fast");
+        jQuery("#pTable tbody").fadeOut("fast");
       },
       complete: function(){
-        jQuery("#pTable").fadeIn("slow");
+        jQuery("#pTable tbody").fadeIn("slow");
         jQuery("#ajax_working").delay(300).fadeOut();
       },
       success: function(data, textStatus, XMLHttpRequest){
-        jQuery("#pTable").html('');        
-        jQuery("#pTable").append(data.slice(0, -1));
+        var orig = jQuery("#pTable")
+        var cont = orig.parent();
+        orig.remove();
+        cont.append(data.slice(0, -1));
       },
       error: function(XMLHttpRequest, textStatus, errorThrown){
         alert(errorThrown);
-      }           
+      }
     });
 
-    $.post('/wp-admin/admin-ajax.php', dataString)              
+    jQuery.post('/wp-admin/admin-ajax.php', dataString)
   }
-   
+
    function create_filter_dropdowns(dataString) {
     jQuery.ajaxSetup({      
       success: function(data, textStatus, XMLHttpRequest){
@@ -34,7 +36,7 @@ jQuery(document).ready(function() {
       }           
     });
 
-    $.post('/wp-admin/admin-ajax.php', dataString)              
+    jQuery.post('/wp-admin/admin-ajax.php', dataString)              
   }
 
   jQuery.fn.clearForm = function() {
@@ -53,7 +55,7 @@ jQuery(document).ready(function() {
 
   jQuery("select").live("change", function(){  
     findProducts("action=search_for_products&"+jQuery(this).closest('form.customSearch').serialize());
-    create_filter_dropdowns("action=create_filter_dropdown&"+jQuery(this).closest('form.customSearch').serialize());
+    //create_filter_dropdowns("action=create_filter_dropdown&"+jQuery(this).closest('form.customSearch').serialize());
   });
 
   jQuery("a.resetLinker").live("click", function() {
