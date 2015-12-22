@@ -155,16 +155,6 @@ function dropdown_formatted_attribute($attribute) {
 	return $pretty_word;
 }
 
-function dropdown_product_filter_contraints() {
-  $filter_attributes = array('finish', 'shape', 'color', 'capacity', 'material', 'style', 'un', 'lining', 'product_type', 'fittings', 'gauge', 'thickness', 'pleated', 'anti_state', 'diameter', 'min_length', 'max_length'); 
-	$filter = "";
-	foreach ($filter_attributes as &$attribute) {
-		if (isset($_POST[$attribute]) && $_POST[$attribute] != '') {
-	    $filter .= sprintf("AND $attribute LIKE '%s' ", mysql_real_escape_string($_POST[$attribute]));
-	  }
-	}
-  return $filter;
-}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $uri = parse_url($_SERVER['HTTP_REFERER']);
@@ -174,45 +164,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $productLineId = isset($_POST['productLineId']) ? $_POST['productLineId'] : product_line_id_from($_SERVER["REQUEST_URI"]);
-$query         = dropdown_product_filter_contraints();
 ?>
 
 <h3 class='widget-title'>Refine Product Search</h3>
 <div>
 	<b><label for='show_product_id'>Product ID</label></b>
 	<span class='clearfix'>
-		<input type='text' style='width:90%' name='show_product' id='show_product_id' placeholder='e.g. 1346' />
+		<input type='text' style='width:50%' name='show_product' id='show_product_id' placeholder='e.g. 1346' />
 		<a class='showProductLink'>Find Product</a>
 	</span>
 </div>
 
 <hr />
 
-<form class='customSearch' action='create_filter_dropdown' method='post'>
-	<input type='hidden' id='productLine' name='productLineId' value='<?= $productLineId ?>' />
-	<div id='prod_collection' style='display: block;'>
-	<?php 
-		foreach ($filter_attributes as &$attribute) { 
-			$attr_query = mysql_query(sprintf("SELECT DISTINCT($attribute) FROM products WHERE product_line_id = %s AND $attribute != 'NULL' $query ORDER BY $attribute", mysql_real_escape_string($productLineId)));
-			if (mysql_num_rows($attr_query) > 0) {
-	?>
-		<div class='select-filter-container'>
-			<label><?= dropdown_formatted_attribute($attribute) ?></label>
-			<span class='clearfix'>
-				<select class='filter-select' name='<?= $attribute ?>'>
-					<option value=''></option>
-					<?php while($row_stock = mysql_fetch_array($attr_query)) { ?>						
-						<option <?php if($row_stock[$attribute] == stripslashes($_POST[$attribute])) { echo "selected='selected'"; } ?>
-							value='<?= $row_stock[$attribute] ?>'>
-							<?= $row_stock[$attribute] ?>
-						</option>
-					<?php } ?>
-				</select>
-				<a href='#' class='resetLinker' onclick="reset_my('<?= $attribute ?>'); return false;">Reset</a>
-			</span>
-		</div>
-	<?php } } ?>
-		<a href='#' onclick='jQuery("form.customSearch").clearForm(); jQuery("form.customSearch select").trigger("change");return false;'>START OVER</a>
-	</div>
-	<div class='divider'></div>
-</form>
