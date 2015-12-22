@@ -2475,7 +2475,6 @@ $.fn.cycle.transitions.wipe = function($cont, $slides, opts) {
 	
 	Revision History:
 		1.0 (23/08/2010)	- Initial release.
-*/
 
 jQuery.fn.retina = function(retina_part) {
 	// Set default retina file part to '@2x'
@@ -2495,3 +2494,5 @@ jQuery.fn.retina = function(retina_part) {
 	}
 	return this;
 }
+*/
+jQuery.fn.retina = function(retina_part) {}
