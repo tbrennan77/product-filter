@@ -53,6 +53,11 @@ jQuery(document).ready(function() {
     });
   };
 
+  jQuery('.reset').live('click', function() {
+    jQuery(".customSearch select").val("");
+    jQuery(".customSearch select").first().trigger("change");
+  });
+
   jQuery("select").live("change", function(){  
     findProducts("action=search_for_products&"+jQuery(this).closest('form.customSearch').serialize());
     //create_filter_dropdowns("action=create_filter_dropdown&"+jQuery(this).closest('form.customSearch').serialize());

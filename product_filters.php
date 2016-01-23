@@ -166,14 +166,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $productLineId = isset($_POST['productLineId']) ? $_POST['productLineId'] : product_line_id_from($_SERVER["REQUEST_URI"]);
 ?>
 
+<hr />
+
 <h3 class='widget-title'>Refine Product Search</h3>
 <div>
 	<b><label for='show_product_id'>Product ID</label></b>
 	<span class='clearfix'>
-		<input type='text' style='width:50%' name='show_product' id='show_product_id' placeholder='e.g. 1346' />
+		<input type='text' style='width:200px' name='show_product' id='show_product_id' placeholder='e.g. 1346' />
 		<a class='showProductLink'>Find Product</a>
 	</span>
 </div>
-
-<hr />
-

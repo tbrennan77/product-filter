@@ -350,8 +350,7 @@
             </select>
           </th>
         <?php } ?>
-				<th class='more-info-cell'>Details</th>
-				<th class='add-to-briefcase-cell'>Add to Briefcase</th>
+          <th colspan='2'><a class='reset'>RESET ALL</a></th>
 			</tr>
 		</thead>
 		<tbody>
