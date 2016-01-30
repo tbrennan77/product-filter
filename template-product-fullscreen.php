@@ -21,21 +21,20 @@ get_header(); ?>
 					<h4><?php echo $parent_title; ?></h4>
 				</div>
       </div>
-      <div id="sidebar-container" class="span_4 col">
-        <img class="aligncenter size-full wp-image-888" src="http://pipelinepackaging.com/wp-content/uploads/2012/08/call-today-pipeline-packaging.gif" alt="Call: 1-877-242-1880" onclick="goog_report_conversion('tel:1-877-242-1880')">
-      </div>
-			<div id="content-container" class="span_16 col">
+      <?php get_sidebar(); ?>
+			<div id="content-container" class="span_12 col">
         <div class="container-col1 clearfix">
           <h1><?php the_title(); ?></h1>
           <div class="content">
             <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
-              <div class="span_6 product-group-image"><img src="<?php the_field('image'); ?>" alt="<?php the_field('image_alt_text'); ?>" class="aligncenter" /></div><?php the_content(); ?>
-              <!-- Begin product filter results -->
+              <div class="span_6 product-group-image">
+                <img src="<?php the_field('image'); ?>" alt="<?php the_field('image_alt_text'); ?>" class="aligncenter" />
+              </div>
+              <?php the_content(); ?>
             <?php endwhile; ?>
           </div>
           <div id="product-filter-results-container">
-          <div id="product-filter-mobile">
-          </div>
+          <div id="product-filter-mobile"></div>
           <script>
             function add_product_to_briefcase(product_id) {
               jQuery.ajaxSetup({

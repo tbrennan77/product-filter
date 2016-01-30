@@ -321,8 +321,16 @@
   $attrs          = filter_attributes($productLineId);
   $products       = products($productLineId);
   $display_total  = display_total($productLineId);
-?>
 
+  // The following 3 closing divs are a nasty hack to keep the sidebar
+  // inline with the pagecontent. Client doesn't have enough money
+  // to pay for the updated layout. Or it would be done properly.
+?>
+    </div>
+  </div>
+</div>
+
+<div id='filter-results-table' class='span_16 col'>
 <div id='pTable'>
   <?php ajax_filter_dropdown(); ?>
   <h3 class='product_count' style='text-align:center;'>
