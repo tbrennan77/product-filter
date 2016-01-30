@@ -130,12 +130,10 @@ get_header(); ?>
 								<option value="loc5">Dallas, TX</option>
 								<option value="loc6">Des Moines, IA</option>
 								<option value="loc7">Detroit, MI</option>
-								<option value="loc8">Greenville, SC</option>
-								<option value="loc9">Houston, TX - North</option>
-								<option value="loc10">Houston, TX - South</option>
-								<option value="loc11">Kansas City, KS</option>
-								<option value="loc12">Nashville, TN</option>
-								<option value="loc13">Oyster Creek, TX</option>
+								<option value="loc8">Houston, TX</option>
+								<option value="loc9">Kansas City, KS</option>
+								<option value="loc10">Nashville, TN</option>
+								<option value="loc11">Oyster Creek, TX</option>
 							</select>
 							<div id="div-loc1" class="location-container span_8">
 								<p><b>Atlanta, GA</b><br />
@@ -208,27 +206,7 @@ get_header(); ?>
 							</div>
 							<div id="div-loc8" class="location-container span_8">
 								<p>
-									<b>Greenville, SC</b><br />
-									1010 East North Street, Suite D3<br />
-									Greenville, SC 29601<br />
-									Toll Free: 855.277.0566<br />
-									Fax: 864.277.0957<br />
-									Local: 864.277.0900
-								</p>
-							</div>
-							<div id="div-loc9" class="location-container span_8">
-								<p>
-									<b>Houston, TX - North</b><br />
-									12777 Jones Road, Suite 105<br />
-									Houston, TX 77070<br />
-									TF: 877.462.1669<br />
-									Fax: 281.477.7524<br />
-									Local: 281.477.7500
-								</p>
-							</div>
-							<div id="div-loc10" class="location-container span_8">
-								<p>
-									<b>Houston, TX - South</b><br />
+									<b>Houston, TX</b><br />
 									7449 E. Orem Drive<br />
 									Houston, TX 77075<br />
 									TF: 844.961.0611<br />
@@ -236,17 +214,17 @@ get_header(); ?>
 									Local: 713.991.0611
 								</p>
 							</div>
-							<div id="div-loc11" class="location-container span_8">
+							<div id="div-loc9" class="location-container span_8">
 								<p>
 									<b>Kansas City, KS</b><br />
-									8230 Marshall Drive<br />
-									Lenexa, KS 66214<br />
+									905 North Commercial Drive<br />
+									Harrisonville, MO 64161<br />
 									TF: 800.446.4080<br />
 									Fax: 913.888.6363<br />
 									Local: 913.888.6100
 								</p>
 							</div>
-							<div id="div-loc12" class="location-container span_8">
+							<div id="div-loc10" class="location-container span_8">
 								<p>
 									<b>Nashville, TN</b><br />
 									1435-A Heil Quaker Blvd<br />
@@ -256,7 +234,7 @@ get_header(); ?>
 									Local: 615.213.0870
 								</p>
 							</div>
-							<div id="div-loc13" class="location-container span_8">
+							<div id="div-loc11" class="location-container span_8">
 								<p>
 									<b>Oyster Creek, TX</b><br />
 									1824 FM 523<br />
