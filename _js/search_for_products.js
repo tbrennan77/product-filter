@@ -13,10 +13,7 @@ jQuery(document).ready(function() {
         var orig = jQuery("#pTable")
         var cont = orig.parent();
         orig.remove();
-        cont.append(data.slice(0, -1));
-      },
-      error: function(XMLHttpRequest, textStatus, errorThrown){
-        alert(errorThrown);
+        cont.append(data.slice(80, -1));
       }
     });
 
@@ -30,10 +27,7 @@ jQuery(document).ready(function() {
         jQuery("#product-filter-mobile").html('');
         jQuery("#product-filter-container").append(data.slice(0, -1));
         jQuery("#product-filter-mobile").append(data.slice(0, -1));
-      },
-      error: function(XMLHttpRequest, textStatus, errorThrown){
-        alert(errorThrown);
-      }           
+      }
     });
 
     jQuery.post('/wp-admin/admin-ajax.php', dataString)              
