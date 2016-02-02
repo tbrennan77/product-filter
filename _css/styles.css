@@ -3038,6 +3038,32 @@ top: -68px;
 }
 .clearfix:after {clear: both;}
 .clearfix {*zoom: 1;}
+
+
+.more-products-dropdown {
+  cursor: pointer;
+}
+.more-products-dropdown ul {
+  background: #FFF;
+  border: 20px solid #FFF;
+  -moz-border-radius: 0 0 6px 6px;
+  -webkit-border-radius: 0 0 6px 6px;
+  -khtml-border-radius: 0 0 6px 6px;
+  border-radius: 0 0 6px 6px;
+  -moz-box-shadow: 0px 1px 5px rgba(0,0,0,.1);
+  -webkit-box-shadow: 0px 1px 5px rgba(0,0,0,.1);
+  box-shadow: 0px 3px 5px rgba(0,0,0,.1);
+  display: none;
+  float: left;
+  margin: 0 !important;
+  position: absolute;
+  width: 175px;
+}
+.more-products-dropdown:hover ul {
+  display:block; 
+}
+
+
 /* ==|== print styles =======================================================
    Print styles.
    Inlined to avoid required HTTP connection: h5bp.com/r

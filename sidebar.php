@@ -84,14 +84,19 @@
                 <ul class="subpages">
                   <li class="page_item page-item-240"><a href="/products/my-briefcase/" title="My Briefcase" rel="">My Briefcase</a></li>
                   <li class="page_item page-item-101 current_page_item"><a href="http://pipelinepackaging.com/products/product-overview/" title="Product Overview" rel="">Product Overview</a></li>
-                  <li class="page_item page-item-82"><a href="/products/bottles-cubitainers-and-jars/" title="Bottles, Cubitainers and Jars" rel="">Bottles, Cubitainers and Jars</a></li>
-                  <li class="page_item page-item-84"><a href="/products/cans/" title="Cans" rel="">Cans</a></li>
-                  <li class="page_item page-item-88"><a href="/products/closing-tools/" title="Closing Tools" rel="">Closing Tools</a></li>
-                  <li class="page_item page-item-90"><a href="/products/closures/" title="Closures" rel="">Closures</a></li>
-                  <li class="page_item page-item-92"><a href="/products/drums-and-totes/" title="Drums and Totes" rel="">Drums and Totes</a></li>
-                  <li class="page_item page-item-94"><a href="/products/liners/" title="Liners" rel="">Liners</a></li>
-                  <li class="page_item page-item-97"><a href="/products/pails-and-tubs/" title="Pails and Tubs" rel="">Pails and Tubs</a></li>
-                  <li class="page_item page-item-99"><a href="/products/tubes/" title="Tubes" rel="">Tubes</a></li>
+                  <li class='more-products-dropdown'>
+                    <a class='more-products-link'>More Products</a>
+                    <ul>
+                      <li class="page_item page-item-82"><a href="/products/bottles-cubitainers-and-jars/" title="Bottles, Cubitainers and Jars" rel="">Bottles, Cubitainers and Jars</a></li>
+                      <li class="page_item page-item-84"><a href="/products/cans/" title="Cans" rel="">Cans</a></li>
+                      <li class="page_item page-item-88"><a href="/products/closing-tools/" title="Closing Tools" rel="">Closing Tools</a></li>
+                      <li class="page_item page-item-90"><a href="/products/closures/" title="Closures" rel="">Closures</a></li>
+                      <li class="page_item page-item-92"><a href="/products/drums-and-totes/" title="Drums and Totes" rel="">Drums and Totes</a></li>
+                      <li class="page_item page-item-94"><a href="/products/liners/" title="Liners" rel="">Liners</a></li>
+                      <li class="page_item page-item-97"><a href="/products/pails-and-tubs/" title="Pails and Tubs" rel="">Pails and Tubs</a></li>
+                      <li class="page_item page-item-99"><a href="/products/tubes/" title="Tubes" rel="">Tubes</a></li>
+                    </ul>
+                  </li>
                 </ul>
               </div>
             </div>
