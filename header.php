@@ -126,7 +126,7 @@ if( is_page() ) {
 	    		</div>
 	    		<div id="logo-container" class="span_5">
     				<a href="<?php echo home_url(); ?>">
-    					<img src="<?php bloginfo( 'template_directory' ); ?>/_img/logo.png" alt="Pipeline Packaging"  title="Pipeline Packaging" />
+    					<img src="<?php bloginfo( 'template_directory' ); ?>/_img/logo@2x.png" alt="Pipeline Packaging"  title="Pipeline Packaging" />
     				</a>
 	    		</div>
 	    		<div id="nav-container" class="span_11">

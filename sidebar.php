@@ -76,7 +76,7 @@
             <div class="column-image-header"></div>
             <div class="column-content">
               <div class="textwidget">
-                <img class="aligncenter size-full wp-image-888" src="/wp-content/uploads/2012/08/call-today-pipeline-packaging.gif" alt="Call: 1-877-242-1880" onclick="goog_report_conversion('tel:1-877-242-1880')">
+                <img class="aligncenter size-full wp-image-888" src="/wp-content/uploads/2012/08/call-today-pipeline-packaging@2x.gif" alt="Call: 1-877-242-1880" onclick="goog_report_conversion('tel:1-877-242-1880')">
               </div>
               <div class="divider"></div>
                   <h3 class="widget-title">Products</h3>
