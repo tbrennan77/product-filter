@@ -368,47 +368,42 @@ $(document).ready(function() {
 		RANDOM SIDEBAR BACKGROUND IMAGES
 	*********************************************************/
 	var images = [
-				  'sidebar-header-images_1_pipeline_packaging.jpg', 	
-				  'sidebar-header-images_2_pipeline_packaging.jpg', 	
-				  'sidebar-header-images_3_pipeline_packaging.jpg', 
-				  'sidebar-header-images_4_pipeline_packaging.jpg', 
-				  'sidebar-header-images_5_pipeline_packaging.jpg',
-				  'sidebar-header-images_6_pipeline_packaging.jpg',
-				  'sidebar-header-images_7_pipeline_packaging.jpg',
-				  'sidebar-header-images_8_pipeline_packaging.jpg',
-				  'sidebar-header-images_9_pipeline_packaging.jpg',
-				  'sidebar-header-images_10_pipeline_packaging.jpg',
-				  'sidebar-header-images_11_pipeline_packaging.jpg',
-				  'sidebar-header-images_12_pipeline_packaging.jpg',
-				  'sidebar-header-images_13_pipeline_packaging.jpg',
-				  'sidebar-header-images_14_pipeline_packaging.jpg',
-				  'sidebar-header-images_15_pipeline_packaging.jpg',
-				  'sidebar-header-images_16_pipeline_packaging.jpg', 
-				  'sidebar-header-images_17_pipeline_packaging.jpg',
-				  'sidebar-header-images_18_pipeline_packaging.jpg',
-				  'sidebar-header-images_19_pipeline_packaging.jpg',
-				  'sidebar-header-images_20_pipeline_packaging.jpg',
-				  'sidebar-header-images_21_pipeline_packaging.jpg',
-				  'sidebar-header-images_22_pipeline_packaging.jpg',
-				  'sidebar-header-images_23_pipeline_packaging.jpg',
-				  'sidebar-header-images_24_pipeline_packaging.jpg',
-				  'sidebar-header-images_25_pipeline_packaging.jpg',
-				  'sidebar-header-images_26_pipeline_packaging.jpg',
-				  'sidebar-header-images_27_pipeline_packaging.jpg',
-				  'sidebar-header-images_28_pipeline_packaging.jpg',
-				  'sidebar-header-images_29_pipeline_packaging.jpg',
-				  'sidebar-header-images_30_pipeline_packaging.jpg',
-				  'sidebar-header-images_31_pipeline_packaging.jpg',
-				  'sidebar-header-images_32_pipeline_packaging.jpg',
-				  'sidebar-header-images_33_pipeline_packaging.jpg',
-				  'sidebar-header-images_34_pipeline_packaging.jpg'
-				  ];
-				  
-	var domain = document.domain;
-	if (domain == 'pipeline.dev' || domain == 'pipelinepackaging.com') {
-		$('.column-image-header').css({'background-image': 'url(/wp-content/themes/viewportindustries-Starkers-689d7e6/_img/' + images[Math.floor(Math.random() *      images.length)] + ')'});
-	} else {
-		$('.column-image-header').css({'background-image': 'url(/pipeline/wp-content/themes/viewportindustries-Starkers-689d7e6/_img/' + images[Math.floor(Math.random() * images.length)] + ')'});
-	}
-	
+    'sidebar-header-images_1_pipeline_packaging.jpg', 	
+    'sidebar-header-images_2_pipeline_packaging.jpg', 	
+    'sidebar-header-images_3_pipeline_packaging.jpg', 
+    'sidebar-header-images_4_pipeline_packaging.jpg', 
+    'sidebar-header-images_5_pipeline_packaging.jpg',
+    'sidebar-header-images_6_pipeline_packaging.jpg',
+    'sidebar-header-images_7_pipeline_packaging.jpg',
+    'sidebar-header-images_8_pipeline_packaging.jpg',
+    'sidebar-header-images_9_pipeline_packaging.jpg',
+    'sidebar-header-images_10_pipeline_packaging.jpg',
+    'sidebar-header-images_11_pipeline_packaging.jpg',
+    'sidebar-header-images_12_pipeline_packaging.jpg',
+    'sidebar-header-images_13_pipeline_packaging.jpg',
+    'sidebar-header-images_14_pipeline_packaging.jpg',
+    'sidebar-header-images_15_pipeline_packaging.jpg',
+    'sidebar-header-images_16_pipeline_packaging.jpg', 
+    'sidebar-header-images_17_pipeline_packaging.jpg',
+    'sidebar-header-images_18_pipeline_packaging.jpg',
+    'sidebar-header-images_19_pipeline_packaging.jpg',
+    'sidebar-header-images_20_pipeline_packaging.jpg',
+    'sidebar-header-images_21_pipeline_packaging.jpg',
+    'sidebar-header-images_22_pipeline_packaging.jpg',
+    'sidebar-header-images_23_pipeline_packaging.jpg',
+    'sidebar-header-images_24_pipeline_packaging.jpg',
+    'sidebar-header-images_25_pipeline_packaging.jpg',
+    'sidebar-header-images_26_pipeline_packaging.jpg',
+    'sidebar-header-images_27_pipeline_packaging.jpg',
+    'sidebar-header-images_28_pipeline_packaging.jpg',
+    'sidebar-header-images_29_pipeline_packaging.jpg',
+    'sidebar-header-images_30_pipeline_packaging.jpg',
+    'sidebar-header-images_31_pipeline_packaging.jpg',
+    'sidebar-header-images_32_pipeline_packaging.jpg',
+    'sidebar-header-images_33_pipeline_packaging.jpg',
+    'sidebar-header-images_34_pipeline_packaging.jpg'
+  ];
+  var random_image = images[Math.floor(Math.random() * images.length)];
+  var image_url = 'url(/wp-content/themes/viewportindustries-Starkers-689d7e6/_img/'+random_image+')';
+  $('.column-image-header').css({'background-image': image_ur});
 });
