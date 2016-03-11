@@ -1097,7 +1097,7 @@ function send_briefcase_email() {
 		}
 		$body .= "</ol>";
 
-		$to = "lkirkland@pipelinepackaging.com, ssmith@pipelinepackaging.com";
+		$to = "TMartineau@pipelinepackaging.com, ssmith@pipelinepackaging.com";
 
 		$subject = "Briefcase";
 		$headers = "From: ".strip_tags($_POST['name'])." <".strip_tags($_POST['email']).">" . "\r\n";
